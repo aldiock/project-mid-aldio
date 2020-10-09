@@ -5,10 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Booststrap -->
+    <!-- Booststrap library -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Project Mid</title>
+
+
 </head>
 
 <body>
@@ -38,66 +40,142 @@
     <!-- Fluid jumbotron -->
 
     <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Student Management</h1>
-    <hr>  
-    <h1 class="display-4">MiniApp</h1>
-  </div>
-</div>
+
+        <div class="container">
+            <h1 class="display-4">Student Management</h1>
+            <hr>
+            <h1 class="display-4">MiniApp</h1>
+        </div>
+    </div>
 
     <!-- End of Fluid Jumbotron -->
 
-<div class="container">
-			<div id="main" class="card card-body">
-                <h2 id="header-title">Add Student</h2>
-                
-                <button type="button" class="btn btn-dark" id="show-hide-button">Show Form Add Student</button>
-                <form id="form-add-student">
-                    <div class="form-group">
-                        <label for="studentNim">Student NIM</label>
-                        <input type="text" class="form-control" id="nim" />
+    
+        <div class="container-sm mb-4">
+            <div class="row">
+                <div class="col-sm-8 p-1">
+                    <div class="container-fluid rounded shadow border pb-3 pt-2">
+                        <h2 id="header-title">Add Student</h2>
+
+<button type="button" class="btn btn-dark" id="show-hide-button">Show Form</button>
+
+            <form id="form-add-student">
+                <div class="form-group">
+                    <label for="studentNim">Student NIM</label>
+                    <input type="text" class="form-control" id="nim" />
+                </div>
+
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" class="form-control" id="name" />
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <p>Gender</p>
+                        <input class="form-check-input" type="radio" name="gender" value="Male" checked>
+                        <label class="form-check-label" for="male">
+                            Male
+                        </label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="studentName">Student Name</label>
-                        <input type="text" class="form-control" id="name" />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Female" checked>
+                        <label class="form-check-label" for="Female">
+                            Female
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="faculty-list-form">Faculty</label>
+                    <select class="form-control" id="faculty-list-form">
+                        <option>SELECT FACULTY</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="prodi-list-form">Program Study</label>
+                    <select class="form-control" id="prodi-list-form">
+                        <option>SELECT PROGRAM OF STUDY</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-success" id="button-submit">Add Student</button>
+                        </form>
                     </div>
 
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Male" checked>
-                            <label class="form-check-label" for="male">
-                                Male
-                            </label>
-                        </div>
+                    
+                </div>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Female" checked>
-                            <label class="form-check-label" for="Female">
-                                Female
-                            </label>
-                        </div>
+
+            <!-- Form Filtet Student -->
+            <div class="col-sm-4 p-1">
+                    <div class="container-fluid rounded shadow border p-2">
+                        <h3>Filter Students By</h3>
+
+                        <form>
+                            <div class="form-group">
+                                <label for="filter-by-faculty">Faculty</label>
+                                <select class="form-control" id="filter-by-faculty">
+                                    <option>SELECT FACULTY</option>
+                                </select>
+                                <button type="button" class="btn btn-dark mt-2" id="filter-faculty-button">Show Students</button>
+                            </div>
+                        </form>
+
+                        <form>
+                            <div class="form-group">
+                                <label for="filter-by-faculty">Program of Study</label>
+                                <select class="form-control" id="filter-by-program-study">
+                                    <option>SELECT PROGRAM STUDY</option>
+                                </select>
+                                <button type="button" class="btn btn-dark mt-2" id="filter-program-study-button">Show Students</button>
+                            </div>
+                        </form>
                     </div>
+                    
+                </div>
+            </div>
+            <!-- End of Form Filter Student -->
 
-                    <div class="form-group">
-                        <label for="faculty-list-form">Faculty</label>
-                        <select class="form-control" id="faculty-list-form">
-                            <option>SELECT FACULTY</option>
-                        </select>
-                    </div>
+        <br>
 
-                    <div class="form-group">
-                        <label for="prodi-list-form">Program Study</label>
-                        <select class="form-control" id="prodi-list-form">
-                            <option>SELECT PROGRAM OF STUDY</option>
-                        </select>
-                    </div>
+        <h2 class="text-center">Our Student</h2>
+
+        <!-- Tabel List Our Student -->
+        <form id="student-form-search">
+            <div class="form-group">
+                <input type="text" class="form-control" id="student-search" placeholder="Search student by name">
+            </div>
+        </form>
+
+        <div class="table-responsive rounded shadow border">
+            <table class="table table-hover">
+                <thread>
+                    <tr>
+                        <th scope="col">NIM - Student ID</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Faculty</th>
+                        <th scope="col">Program of Study</th>
+                        <th scope="col">Action</S></th>
+                    </tr>
+                </thread>
+                <tbody id="list-student">
+
+                </tbody>
+            </table>
+        </div>
+        <!-- End of List Our Student -->
 
 
 
 
-                  
-                
+
+        <!-- Load Script JS -->
+        <script src="javascript/js-script.js"></script>
+
+
 
 
 </body>
