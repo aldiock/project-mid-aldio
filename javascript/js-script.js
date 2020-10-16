@@ -3,6 +3,7 @@ const show_and_hide = document.querySelector("#show-hide-button");
 const form = document.querySelector("form");
 
 show_and_hide.addEventListener("click", function () {
+
   if (form.style.display === "none") {
     form.style.display = "block";
     show_and_hide.textContent = "Hide Form";
@@ -10,10 +11,11 @@ show_and_hide.addEventListener("click", function () {
     form.style.display = "none";
     show_and_hide.textContent = "Show Form";
   }
+
 });
 
 //fakultas dan prodi
-const faculties = [
+const fakultas = [
   {
     name: "Fakultas Ilmu Komputer",
     sub: ["Informatika", "Sistem Informasi"],
@@ -44,23 +46,25 @@ const faculties = [
   },
 ];
 
-const faculty_option = document.querySelector("#faculty-list-form");
+//---------------------------------------------------------------//
 
-for (faculty of faculties) {
+const option_faculty = document.querySelector("#faculty-list-form");
+
+for (faculty of fakultas) {
   let tag = document.createElement("option");
   let text = document.createTextNode(faculty.name);
   tag.appendChild(text);
-  faculty_option.appendChild(tag);
+  option_faculty.appendChild(tag);
 }
 
 let program_study = document.querySelector("#prodi-list-form");
 
-faculty_option.addEventListener("change", function (e) {
+option_faculty.addEventListener("change", function (e) {
   let options = e.target.value;
 
   //check validasi fakultas
-  if (faculties.map((faculty) => faculty.name).indexOf(options) != -1) {
-    faculties.filter((i) => {
+  if (fakultas.map((faculty) => faculty.name).indexOf(options) != -1) {
+    fakultas.filter((i) => {
       if (i.name == options) {
         program_study.innerHTML = "";
 
@@ -88,6 +92,8 @@ faculty_option.addEventListener("change", function (e) {
 });
 //end check validasi fakultas
 
+//---------------------------------------------------------------//
+
 let students = [
   {
     nim: "105021810017",
@@ -96,7 +102,51 @@ let students = [
     faculty: "Fakultas Ilmu Komputer",
     program_study: "Informatika",
   },
+  {
+    nim: "105021810018",
+    name: "John Dexter",
+    gender: "Male",
+    faculty: "Fakultas Ilmu Komputer",
+    program_study: "Sistem Informasi",
+  },
+  {
+    nim: "105021810019",
+    name: "Christoper John",
+    gender: "Male",
+    faculty: "Fakultas Ekonomi dan Bisnis (UBS)",
+    program_study: "Manajemen",
+  },
+  {
+    nim: "105021810020",
+    name: "Jeane Indriani Tantu",
+    gender: "Female",
+    faculty: "Fakultas Keperawatan",
+    program_study: "Ilmu Keperawatan",
+  },
+  {
+    nim: "105021810021",
+    name: "Geysler Takasihaeng",
+    gender: "Male",
+    faculty: "Fakultas Ilmu Komputer",
+    program_study: "Informatika",
+  },
+  {
+    nim: "105021810022",
+    name: "Jovanka Dexter",
+    gender: "Female",
+    faculty: "Fakultas Ilmu Komputer",
+    program_study: "Sistem Informasi",
+  },
+  {
+    nim: "105021810023",
+    name: "Jovial Lopez",
+    gender: "Male",
+    faculty: "Fakultas Ilmu Komputer",
+    program_study: "Sistem Informasi",
+  },
 ];
+
+//---------------------------------------------------------------//
 
 //mengambil semua data student
 const submit_button = document.querySelector("#button-submit");
@@ -149,6 +199,8 @@ submit_button.addEventListener("click", () => {
 });
 //end get all from data
 
+//---------------------------------------------------------------//
+
 //display all students
 const student_list = document.querySelector("#list-student");
 
@@ -161,7 +213,6 @@ function update_student_list(fiter_name) {
     for (key in student) {
       let td = document.createElement("td");
       td.appendChild(document.createTextNode(student[key]));
-
       tr.appendChild(td);
     }
 
@@ -177,6 +228,8 @@ function update_student_list(fiter_name) {
 update_student_list();
 //end display all students
 
+//---------------------------------------------------------------//
+
 //delete row
 function delete_row(btn) {
   var row = btn.parentNode.parentNode;
@@ -189,10 +242,12 @@ function delete_row(btn) {
 
   update_student_list();
 
-  //don't forget to reset input text
-  document.querySelector("#sstudent-form-search").reset();
+  //reset data form
+  document.querySelector("#student-form-search").reset();
 }
 //end delete row
+
+//---------------------------------------------------------------//
 
 //search students by name
 let search_student = document.querySelector("#student-search");
@@ -218,7 +273,7 @@ search_student.addEventListener("input", () => {
         tr.appendChild(td);
       }
 
-      //action #delete,
+      //delete
       let action = document.createElement("td");
       let delete_icon = `<button type="button" onclick="delete_row(this)" class="btn btn-danger">Delete</button>`;
       action.innerHTML = delete_icon;
@@ -239,22 +294,96 @@ search_student.addEventListener("keydown", (e) => {
 });
 //end search student by name
 
-//student filter
-const filter_by_faculty = document.querySelector("#filter-by-faculty");
+//---------------------------------------------------------------//
 
-for (i of faculties) {
+//student filter
+const filter_by_fakultas = document.querySelector("#filter-by-faculty");
+
+for (i of fakultas) {
   const parent = document.createElement("option");
   const child = document.createTextNode(i.name);
   parent.append(child);
-  filter_by_faculty.appendChild(parent);
+  filter_by_fakultas.appendChild(parent);
 }
 
 const filter_faculty_button = document.querySelector("#filter-faculty-button");
 filter_faculty_button.addEventListener("click", () => {
-  const selected_faculty =
-    filter_by_faculty.options[filter_by_faculty.selectedIndex].value;
+  const selected_faculty = filter_by_fakultas.options[filter_by_faculty.selectedIndex].value;
 
-  //update student list
-  if (selected_faculty != "SELECT FACULTY") {
+  //update list student
+  if (selected_faculty == "SELECT FACULTY") {
+    update_student_list();
+  } else {
+    student_list.innerHTML = "";
+
+    //filter student
+    const filtered_students = students.filter((a) => {
+      return a.faculty == selected_faculty;
+      console.log(a.faculty);
+    });
+
+    for (student of filtered_students) {
+      let tr = document.createElement("tr");
+      for (key in student) {
+        let td = document.createElement("td");
+        td.appendChild(document.createTextNode(student[key]));
+        tr.appendChild(td);
+      }
+
+      //delete
+      let action = document.createElement("td");
+      let delete_icon = `<button type="button" onclick="delete_row(this)" class="btn btn-danger">Delete</button>`;
+      action.innerHTML = delete_icon;
+      tr.appendChild(action);
+
+      student_list.appendChild(tr);
+    }
   }
 });
+
+const filter_prodi = document.querySelector("#filter-by-prodi");
+for (i of fakultas) {
+  for (j of i.sub) {
+    const parent = document.createElement("option");
+    const child = document.createTextNode(j);
+    parent.append(child);
+    filter_prodi.appendChild(parent);
+  }
+}
+
+const filter_prodi_button = document.querySelector("#filter-prodi-button");
+filter_prodi_button.addEventListener("click", () => {
+  const selected_prodi = filter_prodi.options[filter_prodi.selectedIndex].value;
+  //update list student
+  if (selected_prodi == "SELECT PROGRAM STUDY") {
+    update_student_list();
+  }
+  else {
+    student_list.innerHTML = "";
+
+    //filter student
+    const filtered_students = students.filter((b) => {
+      return b.program_study == selected_prodi;
+      console.log(b.faculty);
+    });
+
+    for (student of filtered_students) {
+      let tr = document.createElement("tr");
+      for (key in student) {
+        let td = document.createElement("td");
+        td.appendChild(document.createTextNode(student[key]));
+        tr.appendChild(td);
+      }
+
+      //delete
+      let action = document.createElement("td");
+      let delete_icon = `<button type="button" onclick="delete_row(this)" class="btn btn-danger">Delete</button>`;
+      action.innerHTML = delete_icon;
+      tr.appendChild(action);
+
+      student_list.appendChild(tr);
+    }
+  }
+});
+// end of student filter
+

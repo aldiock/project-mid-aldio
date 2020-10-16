@@ -8,33 +8,31 @@
     <!-- Booststrap library -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Project Mid</title>
 
+
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Project Mid by AldioCK </title>
 
 </head>
 
 <body>
 
     <!-- Navbar paling atas -->
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
         <a class="navbar-brand" href="#">Student Management MiniApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <div class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
-
+            </div>
     </nav>
-
     <!-- End of navbar paling atas -->
 
     <!-- Fluid jumbotron -->
@@ -43,105 +41,110 @@
 
         <div class="container">
             <h1 class="display-4">Student Management</h1>
-            <hr>
             <h1 class="display-4">MiniApp</h1>
+            <hr>
+
         </div>
     </div>
 
+
     <!-- End of Fluid Jumbotron -->
 
-    
-        <div class="container-sm mb-4">
-            <div class="row">
-                <div class="col-sm-8 p-1">
-                    <div class="container-fluid rounded shadow border pb-3 pt-2">
-                        <h2 id="header-title">Add Student</h2>
 
-<button type="button" class="btn btn-dark" id="show-hide-button">Show Form</button>
+    <div class="container-sm mb-4">
+        <div class="row">
+            <div class="col-sm-8 p-1">
+                <div class="container-fluid rounded shadow border pb-3 pt-2">
+                    <h2 id="header-title">Add Student</h2>
 
-            <form id="form-add-student">
-                <div class="form-group">
-                    <label for="studentNim">Student NIM</label>
-                    <input type="text" class="form-control" id="nim" />
+                    <button type="button" class="btn btn-primary" id="show-hide-button">Show Form</button>
+
+                    <form id="form-add-student">
+                        <div class="form-group">
+                            <label for="studentNim">Student NIM</label>
+                            <input type="text" class="form-control" id="nim" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentName">Student Name</label>
+                            <input type="text" class="form-control" id="name" />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <p>Gender</p>
+                                <input class="form-check-input" type="radio" name="gender" value="Male" checked>
+                                <label class="form-check-label" for="male">
+                                    Male
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" value="Female" checked>
+                                <label class="form-check-label" for="Female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="faculty-list-form">Faculty</label>
+                            <select class="form-control" id="faculty-list-form">
+                                <option>SELECT FACULTY</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prodi-list-form">Program Study</label>
+                            <select class="form-control" id="prodi-list-form">
+                                <option>SELECT PROGRAM OF STUDY</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-success" id="button-submit">Add Student</button>
+                    </form>
                 </div>
 
-                <div class="form-group">
-                    <label for="studentName">Student Name</label>
-                    <input type="text" class="form-control" id="name" />
-                </div>
 
-                <div class="form-group">
-                    <div class="form-check">
-                        <p>Gender</p>
-                        <input class="form-check-input" type="radio" name="gender" value="Male" checked>
-                        <label class="form-check-label" for="male">
-                            Male
-                        </label>
-                    </div>
+            </div>
 
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Female" checked>
-                        <label class="form-check-label" for="Female">
-                            Female
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="faculty-list-form">Faculty</label>
-                    <select class="form-control" id="faculty-list-form">
-                        <option>SELECT FACULTY</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="prodi-list-form">Program Study</label>
-                    <select class="form-control" id="prodi-list-form">
-                        <option>SELECT PROGRAM OF STUDY</option>
-                    </select>
-                </div>
-                <button type="button" class="btn btn-success" id="button-submit">Add Student</button>
-                        </form>
-                    </div>
-
-                    
-                </div>
 
 
             <!-- Form Filtet Student -->
             <div class="col-sm-4 p-1">
-                    <div class="container-fluid rounded shadow border p-2">
-                        <h3>Filter Students By</h3>
+                <div class="container-fluid rounded shadow border p-2">
+                    <h3>Filter Students By</h3>
 
-                        <form>
-                            <div class="form-group">
-                                <label for="filter-by-faculty">Faculty</label>
-                                <select class="form-control" id="filter-by-faculty">
-                                    <option>SELECT FACULTY</option>
-                                </select>
-                                <button type="button" class="btn btn-dark mt-2" id="filter-faculty-button">Show Students</button>
-                            </div>
-                        </form>
+                    <form>
+                        <div class="form-group">
+                            <label for="filter-by-faculty">Faculty</label>
+                            <select class="form-control" id="filter-by-faculty">
+                                <option>SELECT FACULTY</option>
+                            </select>
+                            <button type="button" class="btn btn-primary mt-2" id="filter-faculty-button">Show
+                                Students</button>
+                        </div>
+                    </form>
 
-                        <form>
-                            <div class="form-group">
-                                <label for="filter-by-faculty">Program of Study</label>
-                                <select class="form-control" id="filter-by-program-study">
-                                    <option>SELECT PROGRAM STUDY</option>
-                                </select>
-                                <button type="button" class="btn btn-dark mt-2" id="filter-program-study-button">Show Students</button>
-                            </div>
-                        </form>
-                    </div>
-                    
+                    <form>
+                        <div class="form-group">
+                            <label for="filter-by-faculty">Program of Study</label>
+                            <select class="form-control" id="filter-by-prodi">
+                                <option>SELECT PROGRAM STUDY</option>
+                            </select>
+                            <button type="button" class="btn btn-primary mt-2" id="filter-prodi-button">Show
+                                Students</button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
-            <!-- End of Form Filter Student -->
+        </div>
+        <!-- End of Form Filter Student -->
 
         <br>
 
-        <h2 class="text-center">Our Student</h2>
-
+        <h1 class="text-center">Our Student</h1>
+        <hr>
         <!-- Tabel List Our Student -->
         <form id="student-form-search">
             <div class="form-group">
@@ -168,7 +171,14 @@
         </div>
         <!-- End of List Our Student -->
 
+        <!-- Footer -->
+        <footer class="page-footer font-small blue pt-4">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">AldioCK©2020</div>
+            <!-- Copyright -->
 
+        </footer>
+        <!-- Footer -->
 
 
 
