@@ -1,99 +1,4 @@
-//fungsi show and hide
-const show_and_hide = document.querySelector("#show-hide-button");
-const form = document.querySelector("form");
-
-show_and_hide.addEventListener("click", function () {
-
-  if (form.style.display === "none") {
-    form.style.display = "block";
-    show_and_hide.textContent = "Hide Form";
-  } else {
-    form.style.display = "none";
-    show_and_hide.textContent = "Show Form";
-  }
-
-});
-
-//fakultas dan prodi
-const fakultas = [
-  {
-    name: "Fakultas Ilmu Komputer",
-    sub: ["Informatika", "Sistem Informasi"],
-  },
-  {
-    name: "Fakultas Keperawatan",
-    sub: ["Profesi Ners", "Ilmu Keperawatan"],
-  },
-  {
-    name: "Fakultas Ekonomi dan Bisnis (UBS)",
-    sub: ["Akuntansi", "Manajemen"],
-  },
-  {
-    name: "Fakultas Keguruan dan Ilmu Pendidikan",
-    sub: ["Agama", "Bahasa Inggris", "Ekonomi", "Guru Luar Sekolah"],
-  },
-  {
-    name: "Fakultas Pertanian",
-    sub: ["Agroteknologi"],
-  },
-  {
-    name: "Fakultas Filsafat",
-    sub: ["Ilmu Filsafat"],
-  },
-  {
-    name: "Pascasarjana",
-    sub: ["Manajemen", "Teologi"],
-  },
-];
-
-//---------------------------------------------------------------//
-
-const option_faculty = document.querySelector("#faculty-list-form");
-
-for (faculty of fakultas) {
-  let tag = document.createElement("option");
-  let text = document.createTextNode(faculty.name);
-  tag.appendChild(text);
-  option_faculty.appendChild(tag);
-}
-
-let program_study = document.querySelector("#prodi-list-form");
-
-option_faculty.addEventListener("change", function (e) {
-  let options = e.target.value;
-
-  //check validasi fakultas
-  if (fakultas.map((faculty) => faculty.name).indexOf(options) != -1) {
-    fakultas.filter((i) => {
-      if (i.name == options) {
-        program_study.innerHTML = "";
-
-        let tag = document.createElement("option");
-        let text = document.createTextNode("SELECT PROGRAM OF STUDY");
-        tag.appendChild(text);
-        program_study.appendChild(tag);
-
-        for (j of i.sub) {
-          let tag = document.createElement("option");
-          let text = document.createTextNode(j);
-          tag.appendChild(text);
-          program_study.appendChild(tag);
-        }
-      }
-    });
-  } else {
-    program_study.innerHTML = "";
-
-    let tag = document.createElement("option");
-    let text = document.createTextNode("SELECT PROGRAM OF STUDY");
-    tag.appendChild(text);
-    program_study.appendChild(tag);
-  }
-});
-//end check validasi fakultas
-
-//---------------------------------------------------------------//
-
+// student
 let students = [
   {
     nim: "105021810017",
@@ -146,7 +51,108 @@ let students = [
   },
 ];
 
+
 //---------------------------------------------------------------//
+
+//fakultas dan prodi
+const fakultas = [
+  {
+    name: "Fakultas Ilmu Komputer",
+    sub: ["Informatika", "Sistem Informasi"],
+  },
+  {
+    name: "Fakultas Keperawatan",
+    sub: ["Profesi Ners", "Ilmu Keperawatan"],
+  },
+  {
+    name: "Fakultas Ekonomi dan Bisnis (UBS)",
+    sub: ["Akuntansi", "Manajemen"],
+  },
+  {
+    name: "Fakultas Keguruan dan Ilmu Pendidikan",
+    sub: ["Agama", "Bahasa Inggris", "Ekonomi", "Guru Luar Sekolah"],
+  },
+  {
+    name: "Fakultas Pertanian",
+    sub: ["Agroteknologi"],
+  },
+  {
+    name: "Fakultas Filsafat",
+    sub: ["Ilmu Filsafat"],
+  },
+  {
+    name: "ASMIK",
+    sub: ["D3 Sekretaris"],
+  },
+  {
+    name: "Pascasarjana",
+    sub: ["Manajemen", "Teologi"],
+  },
+];
+
+//---------------------------------------------------------------//
+
+//fungsi show and hide
+const shwowAndHide = document.querySelector("#show-hide-button");
+const form = document.querySelector("form");
+
+shwowAndHide.addEventListener("click", function () {
+  if (form.style.display === "none") {
+    form.style.display = "block";
+    shwowAndHide.textContent = "Hide Form";
+  } else {
+    form.style.display = "none";
+    shwowAndHide.textContent = "Show Form";
+  }
+});
+
+//---------------------------------------------------------------//
+//cek validasi
+const option_faculty = document.querySelector("#faculty-list-form");
+
+for (faculty of fakultas) {
+  let tag = document.createElement("option");
+  let text = document.createTextNode(faculty.name);
+  tag.appendChild(text);
+  option_faculty.appendChild(tag);
+}
+
+let program_study = document.querySelector("#prodi-list-form");
+
+option_faculty.addEventListener("change", function (e) {
+  let options = e.target.value;
+
+  //check validasi fakultas
+  if (fakultas.map((faculty) => faculty.name).indexOf(options) != -1) {
+    fakultas.filter((i) => {
+      if (i.name == options) {
+        program_study.innerHTML = "";
+
+        let tag = document.createElement("option");
+        let text = document.createTextNode("SELECT PROGRAM OF STUDY");
+        tag.appendChild(text);
+        program_study.appendChild(tag);
+
+        for (j of i.sub) {
+          let tag = document.createElement("option");
+          let text = document.createTextNode(j);
+          tag.appendChild(text);
+          program_study.appendChild(tag);
+        }
+      }
+    });
+  } else {
+    program_study.innerHTML = "";
+
+    let tag = document.createElement("option");
+    let text = document.createTextNode("SELECT PROGRAM OF STUDY");
+    tag.appendChild(text);
+    program_study.appendChild(tag);
+  }
+});
+//end check validasi fakultas
+//---------------------------------------------------------------//
+
 
 //mengambil semua data student
 const submit_button = document.querySelector("#button-submit");
@@ -197,58 +203,9 @@ submit_button.addEventListener("click", () => {
   update_student_list();
   document.querySelector("form").reset();
 });
-//end get all from data
+//end ambil semua data student
 
 //---------------------------------------------------------------//
-
-//display all students
-const student_list = document.querySelector("#list-student");
-
-function update_student_list(fiter_name) {
-  student_list.innerHTML = "";
-
-  for (student of students) {
-    let tr = document.createElement("tr");
-
-    for (key in student) {
-      let td = document.createElement("td");
-      td.appendChild(document.createTextNode(student[key]));
-      tr.appendChild(td);
-    }
-
-    //action
-    let action = document.createElement("td");
-    let trash_icon = `<button type="button" onclick="delete_row(this)" class="btn btn-danger">Delete</button>`;
-    action.innerHTML = trash_icon;
-    tr.appendChild(action);
-
-    student_list.appendChild(tr);
-  }
-}
-update_student_list();
-//end display all students
-
-//---------------------------------------------------------------//
-
-//delete row
-function delete_row(btn) {
-  var row = btn.parentNode.parentNode;
-
-  student_nim = row.querySelector("tr td").textContent;
-
-  students = students.filter((s) => {
-    return s.nim != student_nim;
-  });
-
-  update_student_list();
-
-  //reset data form
-  document.querySelector("#student-form-search").reset();
-}
-//end delete row
-
-//---------------------------------------------------------------//
-
 //search students by name
 let search_student = document.querySelector("#student-search");
 
@@ -284,16 +241,7 @@ search_student.addEventListener("input", () => {
   }
 });
 
-//disable "Enter"
-search_student.addEventListener("keydown", (e) => {
-  if (e.keyCode == 13) {
-    e.preventDefault();
-  }
-
-  return false;
-});
-//end search student by name
-
+//end search students by name
 //---------------------------------------------------------------//
 
 //student filter
@@ -308,7 +256,8 @@ for (i of fakultas) {
 
 const filter_faculty_button = document.querySelector("#filter-faculty-button");
 filter_faculty_button.addEventListener("click", () => {
-  const selected_faculty = filter_by_fakultas.options[filter_by_faculty.selectedIndex].value;
+  const selected_faculty =
+    filter_by_fakultas.options[filter_by_faculty.selectedIndex].value;
 
   //update list student
   if (selected_faculty == "SELECT FACULTY") {
@@ -357,8 +306,7 @@ filter_prodi_button.addEventListener("click", () => {
   //update list student
   if (selected_prodi == "SELECT PROGRAM STUDY") {
     update_student_list();
-  }
-  else {
+  } else {
     student_list.innerHTML = "";
 
     //filter student
@@ -387,3 +335,48 @@ filter_prodi_button.addEventListener("click", () => {
 });
 // end of student filter
 
+//display all students
+const student_list = document.querySelector("#list-student");
+
+function update_student_list(fiter_name) {
+  student_list.innerHTML = "";
+
+  for (student of students) {
+    let tr = document.createElement("tr");
+
+    for (key in student) {
+      let td = document.createElement("td");
+      td.appendChild(document.createTextNode(student[key]));
+      tr.appendChild(td);
+    }
+
+    //action
+    let action = document.createElement("td");
+    let trash_icon = `<button type="button" onclick="delete_row(this)" class="btn btn-danger">Delete</button>`;
+    action.innerHTML = trash_icon;
+    tr.appendChild(action);
+
+    student_list.appendChild(tr);
+  }
+}
+update_student_list();
+//end display all students
+
+//---------------------------------------------------------------//
+
+//delete row
+function delete_row(btn) {
+  var row = btn.parentNode.parentNode;
+
+  student_nim = row.querySelector("tr td").textContent;
+
+  students = students.filter((s) => {
+    return s.nim != student_nim;
+  });
+
+  update_student_list();
+
+  //reset data form
+  document.querySelector("#student-form-search").reset();
+}
+//end delete row
