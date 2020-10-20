@@ -12,3 +12,27 @@
 .btn-primary {
   background-color: #34b7eb;
 }
+
+.btn-success {
+  background-color: #34b7eb;
+}
+
+.blue {
+  background-color: white;
+}
+
+#header-title {
+  font-size: 30px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.p-1 {
+  font-size: 17px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.table {
+  border-collapse: collapse;
+}
